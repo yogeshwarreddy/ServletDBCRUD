@@ -7,8 +7,18 @@
   <servlet-name>person</servlet-name>
   <servlet-class>me.yogeshwar.servlet.service.PersonService</servlet-class>
  </servlet>
+ <servlet>
+ 	<servlet-name>RedirectedServlet</servlet-name>
+ 	<display-name>RedirectedServlet</display-name>
+ 	<description></description>
+ 	<servlet-class>me.yogeshwar.servlet.service.RedirectedServlet</servlet-class>
+ </servlet>
  <servlet-mapping>
   <servlet-name>person</servlet-name>
   <url-pattern>/persons</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+ 	<servlet-name>RedirectedServlet</servlet-name>
+ 	<url-pattern>/RedirectedServlet</url-pattern>
  </servlet-mapping>
 </web-app>

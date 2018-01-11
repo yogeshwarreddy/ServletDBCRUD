@@ -11,12 +11,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import me.yogeshwar.servlet.dao.PersonDao;
 import me.yogeshwar.servlet.dao.PersonDaoImpl;
 import me.yogeshwar.servlet.model.Person;
 
 public class PersonService extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7914793671848219371L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -50,5 +56,18 @@ public class PersonService extends HttpServlet {
 		} else {
 			resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
 		}
+	}
+
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setAttribute("somedata", getServletName());
+		req.getRequestDispatcher("RedirectedServlet").forward(req, resp);
+	}
+
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setAttribute("ServletRequest Data", getServletName());
+		req.getSession().setAttribute("sessionData", getServletName());
+		resp.sendRedirect("RedirectedServlet");
 	}
 }
